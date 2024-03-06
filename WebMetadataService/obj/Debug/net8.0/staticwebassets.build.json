@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "idp8yqaAUJuvEyUl4zMf7jHblZw57a/dbL18kiI0zd0=",
+  "Source": "WebMetadataService",
+  "BasePath": "_content/WebMetadataService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,41 @@
+{
+    "version": "1.0.0",
+    "publisher": {
+        "subsystem": "cun",
+        "channels": [
+            {
+                "configurationName":"",
+                "status": "active", 
+                "channelName": "<dataType>.<name>",
+                "partishions": 3,
+                "timeToLive": 1,
+                "clientId": ""
+            },
+            {
+                "configurationName":"",
+                "status": "active", 
+                "channelName": "<dataType>.<name>",
+                "partishions": 3,
+                "timeToLive": 1,
+                "clientId": ""
+            }
+        ]
+    },
+    "consumer":
+    {
+        "subsystem": "cun",
+        "channels" : [
+            {
+                "configurationName":"",
+                "channelName": "<subsystem>.<dataType>.<name>",
+                "groupName": ""
+            },
+            {
+                "configurationName":"",
+                "channelName": "<subsystem>.<dataType>.<name>",
+                "groupName": ""
+            }
+        ]
+         
+    }
+}
