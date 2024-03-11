@@ -4,23 +4,10 @@ namespace WebMetadataService.MetadataService;
 
 public class FileScannerBuilder
 {
-    private static IServiceCollection? _services;
-
-    public static FileScanner? GetFileScanner()
-    {
-        if (_services != null)
-        {
-            var serviceProvider = _services.BuildServiceProvider();
-            var fileScanner = serviceProvider.GetService<FileScanner>();
-            return fileScanner;
-        }
-        return null;
-    }
     public static async Task Builder()
     {
-        _services = new ServiceCollection();
         //Настройка хоста приложения
-        var builder = new HostBuilder()
+            var builder = new HostBuilder()
             .ConfigureAppConfiguration // настройка конфигурации приложения
             (
                 (hostContext, config) =>
@@ -31,7 +18,7 @@ public class FileScannerBuilder
                     );
                     config.AddJsonFile
                     (
-                        @"appsettings.json",
+                        @"C:\Games\WebMetadataService\WebMetadataService\appsettings.json",
                         optional: true,
                         reloadOnChange: true
                     );
@@ -43,13 +30,13 @@ public class FileScannerBuilder
                 {
                     services.Configure<FileScannerOptions>
                     (
-                        hostContext.Configuration.GetSection("FileScanner")
+                        hostContext.Configuration.GetSection("FileScannerOptions")
                     );
                     services.AddHostedService<FileScanner>();
-                    _services = services;
                 }
             );
         //создаем экземпляр хоста приложения
         await builder.Build().RunAsync();
     }
+    
 }

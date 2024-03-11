@@ -10,17 +10,18 @@ public class FileScanner :BackgroundService
     //список файлов
     private readonly List<FileData>? _files;
     
-    public List<FileData>? GetFiles()
-    {
-        return _files;
-    }
     // Конструктор
     public FileScanner(IOptions<FileScannerOptions> options)
     {
         _options = options.Value;
         _files = new List<FileData>();
     }
-    //сканирование фалла
+
+    public List<FileData>? GetFiles()
+    {
+        return _files;
+    }
+    //сканирование файла
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
@@ -36,14 +37,17 @@ public class FileScanner :BackgroundService
             {
                 Console.WriteLine(e.Message);
             }
-
             await Task.Delay(TimeSpan.FromSeconds(_options.Interval), stoppingToken);
         }
     }
     //получение найденных файлов
     private async void GetSearchedFiles()
     {
-            var files = Directory.GetFiles(_options.Path, _options.SearchPattern);
+            var files = Directory.GetFiles
+                (
+                    _options.Path,
+                    _options.SearchPattern
+                );
             Console.WriteLine($"Найдено {files.Length} файлов");
             foreach (var file in files)
             {
@@ -59,24 +63,27 @@ public class FileScanner :BackgroundService
     //поиск изменений в файле
     private void FindFileChanges(FileData fileData)
     {
-        var f = _files.Find
-        (x => 
-            x.FileName.Equals
-            (
-                fileData.FileName,
-                StringComparison.CurrentCultureIgnoreCase
-            )    
-        );
-        if (f == null)
+        if (_files != null)
         {
-            _files.Add(fileData);
-        }
-        else
-        {
-            if (f.FileHash!=fileData.GetHashCode())
+            var f = _files.Find
+            (x => 
+                x.FileName.Equals
+                (
+                    fileData.FileName,
+                    StringComparison.CurrentCultureIgnoreCase
+                )    
+            );
+            if (f == null)
             {
-                Console.WriteLine(f.FileName+" изменен");
-                f.FileHash = fileData.GetHashCode();
+                _files.Add(fileData);
+            }
+            else
+            {
+                if (f.FileHash!=fileData.GetHashCode())
+                {
+                    Console.WriteLine(f.FileName+" изменен");
+                    f.FileHash = fileData.GetHashCode();
+                }
             }
         }
     }

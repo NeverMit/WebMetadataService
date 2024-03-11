@@ -1,5 +1,5 @@
 @WebMetadataService_HostAddress = http://localhost:5270
-POST {{WebMetadataService_HostAddress}}/metadata/
+GET {{WebMetadataService_HostAddress}}/metadata/
 Accept: application/json
 
 ###

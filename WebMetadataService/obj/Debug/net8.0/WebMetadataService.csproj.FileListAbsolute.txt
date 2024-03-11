@@ -1,4 +1,3 @@
-C:\Games\WebMetadataService\WebMetadataService\bin\Debug\net8.0\appsettings.Development.json
 C:\Games\WebMetadataService\WebMetadataService\bin\Debug\net8.0\appsettings.json
 C:\Games\WebMetadataService\WebMetadataService\bin\Debug\net8.0\WebMetadataService.exe
 C:\Games\WebMetadataService\WebMetadataService\bin\Debug\net8.0\WebMetadataService.deps.json
@@ -33,3 +32,4 @@ C:\Games\WebMetadataService\WebMetadataService\obj\Debug\net8.0\WebMetadataServi
 C:\Games\WebMetadataService\WebMetadataService\obj\Debug\net8.0\ref\WebMetadataService.dll
 C:\Games\WebMetadataService\WebMetadataService\bin\Debug\net8.0\demo.databus.json
 C:\Games\WebMetadataService\WebMetadataService\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Games\WebMetadataService\WebMetadataService\obj\Debug\net8.0\WebMetadataService.sourcelink.json

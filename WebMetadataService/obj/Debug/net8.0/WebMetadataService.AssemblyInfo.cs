@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebMetadataService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d33a3ce07688cf0e4b07ed04ae600869c934c363")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebMetadataService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebMetadataService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

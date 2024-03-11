@@ -1,11 +1,16 @@
-﻿namespace WebMetadataService.MetadataService;
+﻿using Newtonsoft.Json;
+
+namespace WebMetadataService.MetadataService;
 
 public sealed class FileScannerOptions
 {
     //путь к директории
-    public string Path { get; set; }
+    [JsonProperty("Path")]
+    public string? Path { get; set; }
     //маска файла
-    public string SearchPattern { get; set; }
+    [JsonProperty("SearchPattern")]
+    public string? SearchPattern { get; set; }
     //интервал времени
+    [JsonProperty("Interval")]
     public int Interval { get; set; }
 }

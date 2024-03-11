@@ -1,10 +1,4 @@
-
-using System.Text;
-using Newtonsoft.Json;
-using WebMetadataService;
 using WebMetadataService.MetadataService;
-using System.Text.Json;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 public class Program
 {
@@ -12,6 +6,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         var fileScannerBuilder = FileScannerBuilder.Builder();
+        builder.Services.AddSingleton<FileScanner>(); // Регистрируем FileScanner в контейнере зависимостей
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
@@ -24,19 +19,18 @@ public class Program
         app.UseRouting();
         app.UseEndpoints(endpoint =>
         {
-            endpoint.MapPost("/metadata", async (context) =>
+            endpoint.MapGet("/metadata", async (context) =>
             {
-                var fileScanner = FileScannerBuilder.GetFileScanner();
-                var files=fileScanner.GetFiles();
-                if (files != null)
+                var serviceProvider = builder.Services.BuildServiceProvider();
+                var fileScanner = serviceProvider.GetService<FileScanner>();
+                if (fileScanner != null)
                 {
+                    var files = fileScanner.GetFiles();
                     foreach (var file in files)
                     {
                         await context.Response.WriteAsync(file.FileContent);
                     }
-                    
                 }
-                
             });
         });
         app.Run();
