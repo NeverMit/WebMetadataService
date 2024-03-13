@@ -7,7 +7,7 @@
                 "configurationName":"",
                 "status": "active", 
                 "channelName": "<dataType>.<name>",
-                "partishions": 5,
+                "partishions": 3,
                 "timeToLive": 1,
                 "clientId": ""
             },

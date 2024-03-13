@@ -32,7 +32,8 @@ public class FileScannerBuilder
                     (
                         hostContext.Configuration.GetSection("FileScannerOptions")
                     );
-                    services.AddHostedService<FileScanner>();
+                    services.AddSingleton<FileMetadataProvider>();
+                    services.AddHostedService<FileHandlerService>();
                 }
             );
         //создаем экземпляр хоста приложения

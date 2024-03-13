@@ -6,10 +6,10 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         var fileScannerBuilder = FileScannerBuilder.Builder();
-        builder.Services.AddSingleton<FileScanner>(); // Регистрируем FileScanner в контейнере зависимостей
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddSingleton<FileMetadataProvider>();
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
         {
@@ -17,19 +17,17 @@ public class Program
             app.UseSwaggerUI();
         }
         app.UseRouting();
+        var fileMetadataProvider = builder
+            .Services
+            .BuildServiceProvider()
+            .GetService<FileMetadataProvider>();
         app.UseEndpoints(endpoint =>
         {
             endpoint.MapGet("/metadata", async (context) =>
             {
-                var serviceProvider = builder.Services.BuildServiceProvider();
-                var fileScanner = serviceProvider.GetService<FileScanner>();
-                if (fileScanner != null)
+                foreach (var file in fileMetadataProvider.Files)
                 {
-                    var files = fileScanner.GetFiles();
-                    foreach (var file in files)
-                    {
-                        await context.Response.WriteAsync(file.FileContent);
-                    }
+                    await context.Response.WriteAsync(file.FileContent);
                 }
             });
         });

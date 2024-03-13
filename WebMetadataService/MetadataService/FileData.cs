@@ -17,7 +17,7 @@ public class FileData
         }
         return false;
     }
-
+    
     public override int GetHashCode()
     {
         return FileHash.GetHashCode();
